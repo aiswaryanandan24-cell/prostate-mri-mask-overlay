@@ -1,56 +1,67 @@
-# 🧠 Prostate MRI Segmentation Visualizer
+# Prostate MRI Mask Overlay and Contour Visualization
 
-> **AI Med Lab — Task 1** | Medical Image Processing with SimpleITK & OpenCV
+## Overview
+This project was developed as part of my onboarding task in an AI medical imaging lab. The goal was to process prostate MRI data and corresponding segmentation masks to visualize the region of interest (ROI) and generate contour overlays for better anatomical understanding.
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://www.python.org/)
-[![SimpleITK](https://img.shields.io/badge/SimpleITK-medical%20imaging-green)](https://simpleitk.org/)
-[![OpenCV](https://img.shields.io/badge/OpenCV-vision-red)](https://opencv.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+The pipeline uses Python-based medical imaging and computer vision libraries to handle 3D MRI data and convert it into meaningful 2D visual outputs.
 
 ---
 
-## 📋 Overview
+## Objectives
+For each patient MRI dataset:
 
-This project is my first task at the **AI Med Lab**, focused on working with real prostate MRI data. The goal is to:
-
-- **Load** T2-weighted (T2w) MRI volumes and their corresponding prostate gland segmentation masks (NIfTI format)
-- **Part A** — Overlay the segmentation mask to isolate and display only the prostate region
-- **Part B** — Draw a red contour outline of the prostate boundary on the original T2w image and save it as a PNG
-
-The pipeline is run on **4 patient datasets** (IDs: 10005, 10040, 10043, 10048).
-
----
-
-## 🖼️ Sample Results
-
-| (a) Original T2w Slice | (b) Prostate Region Only | (B) Contour Outline |
-|:---:|:---:|:---:|
-| Full axial MRI slice | Masked to show prostate | Red outline on T2w |
-
-> *Images are auto-selected as the axial slice with the largest prostate cross-section.*
+- Load **T2-weighted (T2W) MRI volume**
+- Load **prostate gland segmentation mask**
+- Identify the slice with the largest prostate region
+- Generate:
+  - ROI-only visualization (masked prostate region)
+  - Contour overlay on original MRI image
+- Save outputs as PNG images
 
 ---
 
-## 🗂️ Repository Structure
+## Technologies Used
+- **SimpleITK** – Medical image loading (.nii.gz)
+- **NumPy** – Array manipulation
+- **SciPy** – Mask resizing (if needed)
+- **OpenCV** – Contour detection and drawing
+- **Matplotlib** – Visualization and image saving
+
+---
+
+
+## Repository Structure
 
 ```
-prostate-mri-segmentation/
+prostate-mri-mask-overlay/
 │
-├── prostate_mri_visualizer.py   # Main script (clean, refactored)
 ├── README.md
 ├── requirements.txt
+├── .gitignore
+├── src/
+│   └── prostate_overlay.py
 │
-└── outputs/                     # Auto-created on first run
-    ├── 10005_part_a_mask_overlay.png
-    ├── 10005_part_b_contour.png
-    ├── 10040_part_a_mask_overlay.png
-    ├── 10040_part_b_contour.png
-    └── ...
-```
+├── outputs/
+│   ├── 10005/
+│   │   ├── masked_roi.png
+│   │   └── prostate_outline.png
+│   ├── 10040/
+│   │   ├── masked_roi.png
+│   │   └── prostate_outline.png
+│   ├── 10043/
+│   │   ├── masked_roi.png
+│   │   └── prostate_outline.png
+│   └── 10048/
+│       ├── masked_roi.png
+│       └── prostate_outline.png
+│
+└── data/
+    └── README.txt
+
 
 ---
 
-## ⚙️ Setup & Installation
+## Setup & Installation
 
 ### 1. Clone the repository
 ```bash
