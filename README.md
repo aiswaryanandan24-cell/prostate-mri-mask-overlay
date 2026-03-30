@@ -120,7 +120,7 @@ OpenCV's `findContours` + `drawContours` is used to extract and draw the prostat
 
 ---
 
-## 👩‍💻 Author
+##  Author
 
 **Aiswarya Perumbilly**  
 AI Med Lab -Research Assistant  
