@@ -1,11 +1,5 @@
 """
 Prostate MRI Segmentation Visualizer
-=====================================
-AI Med Lab - Task 1
-
-Loads T2w MRI images and prostate gland masks for multiple patients,
-overlays the segmentation mask, and draws contour outlines saved as PNG.
-
 Author: Aiswarya
 Lab: AI Med Lab
 """
@@ -19,9 +13,7 @@ from scipy.ndimage import zoom
 import cv2
 
 
-# ──────────────────────────────────────────────
 # Configuration — edit patient IDs and base path
-# ──────────────────────────────────────────────
 
 BASE_DIR = "C:/Users/AISWARYA/Desktop/aimed/task_1"
 
@@ -36,9 +28,7 @@ OUTPUT_DIR = os.path.join(BASE_DIR, "outputs")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
-# ──────────────────────────────────────────────
 # Helper functions
-# ──────────────────────────────────────────────
 
 def load_nifti(path: str) -> np.ndarray:
     """Load a NIfTI file and return as a NumPy array."""
@@ -81,9 +71,7 @@ def draw_contour_overlay(gray_slice: np.ndarray,
     return color_img
 
 
-# ──────────────────────────────────────────────
 # Per-patient processing
-# ──────────────────────────────────────────────
 
 def process_patient(patient: dict) -> None:
     pid = patient["id"]
@@ -111,7 +99,7 @@ def process_patient(patient: dict) -> None:
     t2w_sl = normalize_to_uint8(t2w[sl])
     mask_sl = gland_r[sl]
 
-    # ── Part A: mask overlay (prostate only) ──────────────────────────
+    # ── Part A: mask overlay (prostate only) 
     masked = np.where(mask_sl > 0, t2w_sl, 0)
 
     fig, axes = plt.subplots(1, 2, figsize=(10, 5))
@@ -131,7 +119,7 @@ def process_patient(patient: dict) -> None:
     plt.show()
     print(f"  Saved Part A → {part_a_path}")
 
-    # ── Part B: red contour outline ────────────────────────────────────
+    # ── Part B: red contour outline 
     contour_img = draw_contour_overlay(t2w_sl, mask_sl)
 
     plt.figure(figsize=(5, 5))
@@ -145,12 +133,10 @@ def process_patient(patient: dict) -> None:
     print(f"  Saved Part B → {part_b_path}")
 
 
-# ──────────────────────────────────────────────
 # Main
-# ──────────────────────────────────────────────
 
 if __name__ == "__main__":
     for patient in PATIENTS:
         process_patient(patient)
 
-    print("\n✅ All patients processed. Outputs saved to:", OUTPUT_DIR)
+    print("\n All patients processed. Outputs saved to:", OUTPUT_DIR)
