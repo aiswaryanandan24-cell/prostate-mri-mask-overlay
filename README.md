@@ -58,53 +58,9 @@ prostate-mri-mask-overlay/
 └── data/
     └── README.txt
 
-
----
-
-## Setup & Installation
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/YOUR_USERNAME/prostate-mri-segmentation.git
-cd prostate-mri-segmentation
 ```
 
-### 2. Install dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Download the data
-Get the prostate MRI dataset (4 patients) from the link provided by the lab.  
-Place it so your folder structure looks like:
-
-```
-aimed/task_1/
-├── 10005-20260310T144531Z-1-001/
-│   └── 10005/
-│       ├── 10005_t2w.nii.gz
-│       └── 10005_gland.nii.gz
-├── 10040-.../
-│   └── 10040/
-│       ├── 10040_t2w.nii.gz
-│       └── 10040_gland.nii.gz
-...
-```
-
-### 4. Update the base path
-In `prostate_mri_visualizer.py`, update:
-```python
-BASE_DIR = "C:/path/to/your/aimed/task_1"
-```
-
-### 5. Run
-```bash
-python prostate_mri_visualizer.py
-```
-
----
-
-## 📦 Requirements
+## Requirements
 
 ```
 SimpleITK
@@ -121,7 +77,7 @@ pip install SimpleITK numpy matplotlib scipy opencv-python
 
 ---
 
-## 🔬 How It Works
+## How It Works
 
 ### Step 1 — Load NIfTI files
 T2w MRI volumes and gland masks are loaded using `SimpleITK` and converted to NumPy arrays.
@@ -143,7 +99,7 @@ OpenCV's `findContours` + `drawContours` is used to extract and draw the prostat
 
 ---
 
-## 🧪 Key Libraries
+## Key Libraries
 
 | Library | Purpose |
 |---|---|
@@ -155,7 +111,7 @@ OpenCV's `findContours` + `drawContours` is used to extract and draw the prostat
 
 ---
 
-## 📚 References & Learning Resources
+## References & Learning Resources
 
 - [Medical Image Processing with Python — The AI Summer](https://theaisummer.com/medical-image-python/)
 - [Image Processing with Python — Coursera](https://www.coursera.org/projects/image-processing-with-python)
@@ -166,9 +122,8 @@ OpenCV's `findContours` + `drawContours` is used to extract and draw the prostat
 
 ## 👩‍💻 Author
 
-**Aiswarya**  
-AI Med Lab Intern  
+**Aiswarya Perumbilly**  
+AI Med Lab -Research Assistant  
 
 ---
 
-*First task completed ✅ — Prostate MRI segmentation visualization across 4 patient datasets.*
