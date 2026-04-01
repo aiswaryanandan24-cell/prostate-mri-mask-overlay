@@ -79,22 +79,22 @@ pip install SimpleITK numpy matplotlib scipy opencv-python
 
 ## How It Works
 
-### Step 1 — Load NIfTI files
+### Step 1 - Load NIfTI files
 T2w MRI volumes and gland masks are loaded using `SimpleITK` and converted to NumPy arrays.
 
-### Step 2 — Resize mask
+### Step 2 - Resize mask
 The gland mask is often at a different resolution than the T2w image. It is resampled using `scipy.ndimage.zoom` with **nearest-neighbour interpolation** (order=0) to preserve binary label values.
 
-### Step 3 — Select best slice
+### Step 3 - Select best slice
 The axial slice with the **most mask pixels** is automatically chosen — this guarantees the prostate is well-represented in the displayed cross-section.
 
-### Step 4 — Part A: Mask overlay
+### Step 4 - Part A: Mask overlay
 ```python
 masked = np.where(mask_slice > 0, t2w_normalized, 0)
 ```
 Pixels outside the prostate are set to black; only the segmented region is shown.
 
-### Step 5 — Part B: Contour overlay
+### Step 5 - Part B: Contour overlay
 OpenCV's `findContours` + `drawContours` is used to extract and draw the prostate boundary in **red** directly on a colour copy of the T2w slice. The result is saved as a PNG.
 
 ---
